@@ -1,5 +1,7 @@
 package io.appwrite.models
 
+import com.google.gson.annotations.SerializedName
+
 /**
  * Documents List
  */
@@ -8,18 +10,20 @@ data class DocumentList(
      * Total number of items available on the server.
      *
      */
+    @SerializedName("sum")
     val sum: Long,
 
     /**
      * List of documents.
      *
      */
+    @SerializedName("documents")
     val documents: List<Document>
 ) {
     companion object {
         @Suppress("UNCHECKED_CAST")
         fun from(map: Map<String, Any>) = DocumentList(
-            sum = map["sum"] as Long,
+            sum = (map["sum"] as Number).toLong(),
             documents = (map["documents"] as List<Map<String, Any>>).map { Document.from(map = it) }
         )
     }

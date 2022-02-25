@@ -3,7 +3,7 @@ import android.os.Bundle
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import io.appwrite.Client
-import io.appwrite.services.Storage
+import io.appwrite.services.Teams
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,14 +14,14 @@ class MainActivity : AppCompatActivity() {
             .setEndpoint("https://[HOSTNAME_OR_IP]/v1") // Your API Endpoint
             .setProject("5df5acd0d48c2") // Your project ID
 
-        val storage = Storage(client)
+        val teams = Teams(client)
 
         GlobalScope.launch {
-            val result = storage.getFileView(
-                bucketId = "[BUCKET_ID]",
-                fileId = "[FILE_ID]"
+            val response = teams.getMembership(
+                teamId = "[TEAM_ID]",
+                membershipId = "[MEMBERSHIP_ID]"
             )
-            println(result); // Resource URL        
+            val json = response.body?.string()        
         }
     }
 }
