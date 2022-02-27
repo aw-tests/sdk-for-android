@@ -285,7 +285,7 @@ class Storage(client: Client) : Service(client) {
      * @param rotation Preview image rotation in degrees. Pass an integer between -360 and 360.
      * @param background Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix.
      * @param output Output format type (jpeg, jpg, png, gif and webp).
-     * @return [Any]     
+     * @return [ByteArray]     
      */
     @JvmOverloads
     @Throws(AppwriteException::class)
@@ -303,7 +303,7 @@ class Storage(client: Client) : Service(client) {
 		rotation: Long? = null,
 		background: String? = null,
 		output: String? = null
-	): Any {
+	): ByteArray {
         val path = "/storage/buckets/{bucketId}/files/{fileId}/preview".replace("{bucketId}", bucketId).replace("{fileId}", fileId)
         val params = mutableMapOf<String, Any?>(
             "width" to width,
@@ -316,17 +316,14 @@ class Storage(client: Client) : Service(client) {
             "opacity" to opacity,
             "rotation" to rotation,
             "background" to background,
-            "output" to output
-        )
-        val headers = mutableMapOf(
-            "content-type" to "application/json"
+            "output" to output,
+            "project" to client.config["project"]
         )
         return client.call(
             "GET",
             path,
-            headers,
-            params,
-            responseType = Any::class.java,
+            params = params,
+            responseType = ByteArray::class.java
         )
     }
     
