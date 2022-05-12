@@ -30,7 +30,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.User = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.User = {
             io.appwrite.models.User.from(map = it)
         }
         return client.call(
@@ -39,7 +39,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.User::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -77,7 +77,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.User = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.User = {
             io.appwrite.models.User.from(map = it)
         }
         return client.call(
@@ -86,7 +86,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.User::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -149,7 +149,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.User = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.User = {
             io.appwrite.models.User.from(map = it)
         }
         return client.call(
@@ -158,7 +158,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.User::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -182,7 +182,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Jwt = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Jwt = {
             io.appwrite.models.Jwt.from(map = it)
         }
         return client.call(
@@ -191,7 +191,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Jwt::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -219,7 +219,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.LogList = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.LogList = {
             io.appwrite.models.LogList.from(map = it)
         }
         return client.call(
@@ -228,7 +228,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.LogList::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -252,7 +252,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.User = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.User = {
             io.appwrite.models.User.from(map = it)
         }
         return client.call(
@@ -261,7 +261,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.User::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -270,7 +270,7 @@ class Account(client: Client) : Service(client) {
      *
      * Update currently logged in user password. For validation, user is required
      * to pass in the new password, and the old password. For users created with
-     * OAuth and Team Invites, oldPassword is optional.
+     * OAuth, Team Invites and Magic URL, oldPassword is optional.
      *
      * @param password New user password. Must be at least 8 chars.
      * @param oldPassword Current user password. Must be at least 8 chars.
@@ -290,7 +290,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.User = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.User = {
             io.appwrite.models.User.from(map = it)
         }
         return client.call(
@@ -299,7 +299,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.User::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -319,7 +319,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Preferences = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Preferences = {
             io.appwrite.models.Preferences.from(map = it)
         }
         return client.call(
@@ -328,7 +328,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Preferences::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -354,7 +354,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.User = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.User = {
             io.appwrite.models.User.from(map = it)
         }
         return client.call(
@@ -363,7 +363,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.User::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -397,7 +397,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Token = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
             io.appwrite.models.Token.from(map = it)
         }
         return client.call(
@@ -406,7 +406,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Token::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -447,7 +447,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Token = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
             io.appwrite.models.Token.from(map = it)
         }
         return client.call(
@@ -456,7 +456,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Token::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -477,7 +477,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.SessionList = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.SessionList = {
             io.appwrite.models.SessionList.from(map = it)
         }
         return client.call(
@@ -486,7 +486,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.SessionList::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -514,7 +514,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Session = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
             io.appwrite.models.Session.from(map = it)
         }
         return client.call(
@@ -523,7 +523,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Session::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -574,7 +574,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Session = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
             io.appwrite.models.Session.from(map = it)
         }
         return client.call(
@@ -583,7 +583,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Session::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -622,7 +622,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Token = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
             io.appwrite.models.Token.from(map = it)
         }
         return client.call(
@@ -631,7 +631,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Token::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -668,7 +668,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Session = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
             io.appwrite.models.Session.from(map = it)
         }
         return client.call(
@@ -677,7 +677,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Session::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -697,10 +697,10 @@ class Account(client: Client) : Service(client) {
      * user..
      * 
      *
-     * @param provider OAuth2 Provider. Currently, supported providers are: amazon, apple, bitbucket, bitly, box, discord, dropbox, facebook, github, gitlab, google, linkedin, microsoft, notion, paypal, paypalSandbox, salesforce, slack, spotify, tradeshift, tradeshiftBox, twitch, vk, yahoo, yammer, yandex, wordpress, stripe.
+     * @param provider OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, bitbucket, bitly, box, discord, dropbox, facebook, github, gitlab, google, linkedin, microsoft, notion, okta, paypal, paypalSandbox, salesforce, slack, spotify, tradeshift, tradeshiftBox, twitch, zoom, yahoo, yammer, yandex, wordpress, stripe.
      * @param success URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
      * @param failure URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
-     * @param scopes A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes.
+     * @param scopes A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 128 characters long.
      *      
      */
     @JvmOverloads
@@ -783,7 +783,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Session = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
             io.appwrite.models.Session.from(map = it)
         }
         return client.call(
@@ -792,12 +792,16 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Session::class.java,
-            convert = convert,
+            converter,
         )
     }
     
     /**
      * Update Session (Refresh Tokens)
+     *
+     * Access tokens have limited lifespan and expire to mitigate security risks.
+     * If session was created using an OAuth provider, this route can be used to
+     * "refresh" the access token.
      *
      * @param sessionId Session ID. Use the string &#039;current&#039; to update the current device session.
      * @return [io.appwrite.models.Session]     
@@ -813,7 +817,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Session = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
             io.appwrite.models.Session.from(map = it)
         }
         return client.call(
@@ -822,7 +826,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Session::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -891,7 +895,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Token = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
             io.appwrite.models.Token.from(map = it)
         }
         return client.call(
@@ -900,7 +904,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Token::class.java,
-            convert = convert,
+            converter,
         )
     }
     
@@ -930,7 +934,7 @@ class Account(client: Client) : Service(client) {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val convert: (Map<String, Any>) -> io.appwrite.models.Token = {
+        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
             io.appwrite.models.Token.from(map = it)
         }
         return client.call(
@@ -939,7 +943,7 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = io.appwrite.models.Token::class.java,
-            convert = convert,
+            converter,
         )
     }
     
