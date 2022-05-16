@@ -91,35 +91,6 @@ class Account(client: Client) : Service(client) {
     }
     
     /**
-     * Delete Account
-     *
-     * Delete a currently logged in user account. Behind the scene, the user
-     * record is not deleted but permanently blocked from any access. This is done
-     * to avoid deleted accounts being overtaken by new users with the same email
-     * address. Any user-related resources like documents or storage files should
-     * be deleted separately.
-     *
-     * @return [Any]     
-     */
-    @JvmOverloads
-    @Throws(AppwriteException::class)
-    suspend fun delete(): Any {
-        val path = "/account"
-        val params = mutableMapOf<String, Any?>(
-        )
-        val headers = mutableMapOf(
-            "content-type" to "application/json"
-        )
-        return client.call(
-            "DELETE",
-            path,
-            headers,
-            params,
-            responseType = Any::class.java,
-        )
-    }
-    
-    /**
      * Update Account Email
      *
      * Update currently logged in user account email address. After changing user
@@ -858,6 +829,37 @@ class Account(client: Client) : Service(client) {
             headers,
             params,
             responseType = Any::class.java,
+        )
+    }
+    
+    /**
+     * Update Account Status
+     *
+     * Block the currently logged in user account. Behind the scene, the user
+     * record is not deleted but permanently blocked from any access. To
+     * completely delete a user, use the Users API instead.
+     *
+     * @return [io.appwrite.models.User]     
+     */
+    @JvmOverloads
+    @Throws(AppwriteException::class)
+    suspend fun updateStatus(): io.appwrite.models.User {
+        val path = "/account/status"
+        val params = mutableMapOf<String, Any?>(
+        )
+        val headers = mutableMapOf(
+            "content-type" to "application/json"
+        )
+        val converter: (Map<String, Any>) -> io.appwrite.models.User = {
+            io.appwrite.models.User.from(map = it)
+        }
+        return client.call(
+            "PATCH",
+            path,
+            headers,
+            params,
+            responseType = io.appwrite.models.User::class.java,
+            converter,
         )
     }
     
