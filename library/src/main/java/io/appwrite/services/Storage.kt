@@ -116,7 +116,6 @@ class Storage(client: Client) : Service(client) {
             io.appwrite.models.File.from(map = it)
         }
         val idParamName: String? = "fileId"    
-        idParamName = "fileId"
         val paramName = "file"
         return client.chunkedUpload(
             path,

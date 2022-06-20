@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         Account account = new Account(client);
 
-        account.createSession(
+        account.createEmailSession(
             "email@example.com", 
             "password"
             new Continuation<Object>() {

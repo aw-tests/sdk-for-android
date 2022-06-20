@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         val account = Account(client)
 
         GlobalScope.launch {
-            val response = account.createSession(
+            val response = account.createEmailSession(
                 email = "email@example.com",
                 password = "password"
             )
