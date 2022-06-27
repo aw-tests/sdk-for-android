@@ -158,7 +158,7 @@ class Databases(client: Client) : Service(client) {
 		databaseId: String,
 		collectionId: String,
 		documentId: String,
-		data: Any,
+		data: Any? = null,
 		read: List<Any>? = null,
 		write: List<Any>? = null
 	): io.appwrite.models.Document {
