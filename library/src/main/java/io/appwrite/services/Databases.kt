@@ -8,18 +8,23 @@ import okhttp3.Cookie
 import okhttp3.Response
 import java.io.File
 
-class Databases(client: Client) : Service(client) {
+class Databases : Service {
+
+    val databaseId: String
+
+    public constructor(client: Client, databaseId: String) : super(client) {
+        this.databaseId = databaseId
+    }
 
     /**
      * List Documents
      *
-     * @param databaseId Database ID.
      * @param collectionId Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection).
      * @param queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/database#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long.
      * @param limit Maximum number of documents to return in response. By default will return maximum 25 results. Maximum of 100 results allowed per request.
      * @param offset Offset value. The default value is 0. Use this value to manage pagination. [learn more about pagination](https://appwrite.io/docs/pagination)
      * @param cursor ID of the document used as the starting point for the query, excluding the document itself. Should be used for efficient pagination when working with large sets of data. [learn more about pagination](https://appwrite.io/docs/pagination)
-     * @param cursorDirection Direction of the cursor.
+     * @param cursorDirection Direction of the cursor, can be either &#039;before&#039; or &#039;after&#039;.
      * @param orderAttributes Array of attributes used to sort results. Maximum of 100 order attributes are allowed, each 4096 characters long.
      * @param orderTypes Array of order directions for sorting attribtues. Possible values are DESC for descending order, or ASC for ascending order. Maximum of 100 order types are allowed.
      * @return [io.appwrite.models.DocumentList]     
@@ -27,7 +32,6 @@ class Databases(client: Client) : Service(client) {
     @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listDocuments(
-		databaseId: String,
 		collectionId: String,
 		queries: List<Any>? = null,
 		limit: Long? = null,
@@ -66,7 +70,6 @@ class Databases(client: Client) : Service(client) {
     /**
      * Create Document
      *
-     * @param databaseId Database ID.
      * @param collectionId Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection). Make sure to define attributes before creating documents.
      * @param documentId Document ID. Choose your own unique ID or pass the string &quot;unique()&quot; to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can&#039;t start with a special char. Max length is 36 chars.
      * @param data Document data as JSON object.
@@ -77,7 +80,6 @@ class Databases(client: Client) : Service(client) {
     @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createDocument(
-		databaseId: String,
 		collectionId: String,
 		documentId: String,
 		data: Any,
@@ -110,7 +112,6 @@ class Databases(client: Client) : Service(client) {
     /**
      * Get Document
      *
-     * @param databaseId Database ID.
      * @param collectionId Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection).
      * @param documentId Document ID.
      * @return [io.appwrite.models.Document]     
@@ -118,7 +119,6 @@ class Databases(client: Client) : Service(client) {
     @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getDocument(
-		databaseId: String,
 		collectionId: String,
 		documentId: String
 	): io.appwrite.models.Document {
@@ -144,7 +144,6 @@ class Databases(client: Client) : Service(client) {
     /**
      * Update Document
      *
-     * @param databaseId Database ID.
      * @param collectionId Collection ID.
      * @param documentId Document ID.
      * @param data Document data as JSON object. Include only attribute and value pairs to be updated.
@@ -155,7 +154,6 @@ class Databases(client: Client) : Service(client) {
     @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateDocument(
-		databaseId: String,
 		collectionId: String,
 		documentId: String,
 		data: Any? = null,
@@ -187,7 +185,6 @@ class Databases(client: Client) : Service(client) {
     /**
      * Delete Document
      *
-     * @param databaseId Database ID.
      * @param collectionId Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/database#createCollection).
      * @param documentId Document ID.
      * @return [Any]     
@@ -195,7 +192,6 @@ class Databases(client: Client) : Service(client) {
     @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteDocument(
-		databaseId: String,
 		collectionId: String,
 		documentId: String
 	): Any {
