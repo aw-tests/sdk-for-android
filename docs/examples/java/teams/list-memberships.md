@@ -3,8 +3,7 @@ import android.os.Bundle
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import io.appwrite.Client
-import io.appwrite.models.InputFile
-import io.appwrite.services.Storage
+import io.appwrite.services.Teams
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,12 +16,10 @@ public class MainActivity extends AppCompatActivity {
             .setEndpoint("https://[HOSTNAME_OR_IP]/v1") // Your API Endpoint
             .setProject("5df5acd0d48c2"); // Your project ID
 
-        Storage storage = new Storage(client);
+        Teams teams = new Teams(client);
 
-        storage.createFile(
-            "[BUCKET_ID]", 
-            "[FILE_ID]", 
-            InputFile.fromPath("file.png"), 
+        teams.listMemberships(
+            "[TEAM_ID]", 
             new Continuation<Object>() {
                 @NotNull
                 @Override
