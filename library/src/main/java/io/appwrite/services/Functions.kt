@@ -13,42 +13,10 @@ class Functions : Service {
     public constructor (client: Client) : super(client) { }
 
     /**
-     * Retry Build
-     *
-     * @param functionId Function ID.
-     * @param deploymentId Deployment ID.
-     * @param buildId Build unique ID.
-     * @return [Any]     
-     */
-    @JvmOverloads
-    @Throws(AppwriteException::class)
-    suspend fun retryBuild(
-		functionId: String,
-		deploymentId: String,
-		buildId: String
-	): Any {
-        val path = "/functions/{functionId}/deployments/{deploymentId}/builds/{buildId}".replace("{functionId}", functionId).replace("{deploymentId}", deploymentId).replace("{buildId}", buildId)
-        val params = mutableMapOf<String, Any?>(
-        )
-        val headers = mutableMapOf(
-            "content-type" to "application/json"
-        )
-        return client.call(
-            "POST",
-            path,
-            headers,
-            params,
-            responseType = Any::class.java,
-        )
-    }
-    
-    /**
      * List Executions
      *
      * Get a list of all the current user function execution logs. You can use the
-     * query params to filter your results. On admin mode, this endpoint will
-     * return a list of all of the project's executions. [Learn more about
-     * different API modes](/docs/admin).
+     * query params to filter your results.
      *
      * @param functionId Function ID.
      * @param queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, statusCode, duration
@@ -56,7 +24,6 @@ class Functions : Service {
      * @return [io.appwrite.models.ExecutionList]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun listExecutions(
 		functionId: String,
 		queries: List<String>? = null,
@@ -70,8 +37,8 @@ class Functions : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.ExecutionList = {
-            io.appwrite.models.ExecutionList.from(map = it)
+        val converter: (Any) -> io.appwrite.models.ExecutionList = {
+            io.appwrite.models.ExecutionList.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -97,7 +64,6 @@ class Functions : Service {
      * @return [io.appwrite.models.Execution]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createExecution(
 		functionId: String,
 		data: String? = null,
@@ -111,8 +77,8 @@ class Functions : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Execution = {
-            io.appwrite.models.Execution.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Execution = {
+            io.appwrite.models.Execution.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -134,7 +100,6 @@ class Functions : Service {
      * @return [io.appwrite.models.Execution]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getExecution(
 		functionId: String,
 		executionId: String
@@ -145,8 +110,8 @@ class Functions : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Execution = {
-            io.appwrite.models.Execution.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Execution = {
+            io.appwrite.models.Execution.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",

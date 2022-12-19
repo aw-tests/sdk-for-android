@@ -24,7 +24,6 @@ class Account : Service {
      * @return [io.appwrite.models.Account]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun get(): io.appwrite.models.Account {
         val path = "/account"
         val params = mutableMapOf<String, Any?>(
@@ -32,8 +31,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Account = {
-            io.appwrite.models.Account.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Account = {
+            io.appwrite.models.Account.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -55,14 +54,13 @@ class Account : Service {
      * login to their new account, you need to create a new [account
      * session](/docs/client/account#accountCreateSession).
      *
-     * @param userId Unique Id. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+     * @param userId Unique Id. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
      * @param email User email.
      * @param password User password. Must be at least 8 chars.
      * @param name User name. Max length: 128 chars.
      * @return [io.appwrite.models.Account]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun create(
 		userId: String,
 		email: String,
@@ -79,8 +77,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Account = {
-            io.appwrite.models.Account.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Account = {
+            io.appwrite.models.Account.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -93,7 +91,7 @@ class Account : Service {
     }
     
     /**
-     * Update Account Email
+     * Update Email
      *
      * Update currently logged in user account email address. After changing user
      * address, the user confirmation status will get reset. A new confirmation
@@ -109,7 +107,6 @@ class Account : Service {
      * @return [io.appwrite.models.Account]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updateEmail(
 		email: String,
 		password: String
@@ -122,8 +119,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Account = {
-            io.appwrite.models.Account.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Account = {
+            io.appwrite.models.Account.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PATCH",
@@ -136,7 +133,7 @@ class Account : Service {
     }
     
     /**
-     * Create Account JWT
+     * Create JWT
      *
      * Use this endpoint to create a JSON Web Token. You can use the resulting JWT
      * to authenticate on behalf of the current user when working with the
@@ -147,7 +144,6 @@ class Account : Service {
      * @return [io.appwrite.models.Jwt]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createJWT(): io.appwrite.models.Jwt {
         val path = "/account/jwt"
         val params = mutableMapOf<String, Any?>(
@@ -155,8 +151,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Jwt = {
-            io.appwrite.models.Jwt.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Jwt = {
+            io.appwrite.models.Jwt.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -169,7 +165,7 @@ class Account : Service {
     }
     
     /**
-     * List Account Logs
+     * List Logs
      *
      * Get currently logged in user list of latest security activity logs. Each
      * log returns user IP address, location and date and time of log.
@@ -178,7 +174,6 @@ class Account : Service {
      * @return [io.appwrite.models.LogList]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun listLogs(
 		queries: List<String>? = null
 	): io.appwrite.models.LogList {
@@ -189,8 +184,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.LogList = {
-            io.appwrite.models.LogList.from(map = it)
+        val converter: (Any) -> io.appwrite.models.LogList = {
+            io.appwrite.models.LogList.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -203,7 +198,7 @@ class Account : Service {
     }
     
     /**
-     * Update Account Name
+     * Update Name
      *
      * Update currently logged in user account name.
      *
@@ -211,7 +206,6 @@ class Account : Service {
      * @return [io.appwrite.models.Account]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updateName(
 		name: String
 	): io.appwrite.models.Account {
@@ -222,8 +216,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Account = {
-            io.appwrite.models.Account.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Account = {
+            io.appwrite.models.Account.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PATCH",
@@ -236,7 +230,7 @@ class Account : Service {
     }
     
     /**
-     * Update Account Password
+     * Update Password
      *
      * Update currently logged in user password. For validation, user is required
      * to pass in the new password, and the old password. For users created with
@@ -247,7 +241,6 @@ class Account : Service {
      * @return [io.appwrite.models.Account]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updatePassword(
 		password: String,
 		oldPassword: String? = null
@@ -260,8 +253,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Account = {
-            io.appwrite.models.Account.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Account = {
+            io.appwrite.models.Account.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PATCH",
@@ -274,7 +267,7 @@ class Account : Service {
     }
     
     /**
-     * Update Account Phone
+     * Update Phone
      *
      * Update the currently logged in user's phone number. After updating the
      * phone number, the phone verification status will be reset. A confirmation
@@ -287,7 +280,6 @@ class Account : Service {
      * @return [io.appwrite.models.Account]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updatePhone(
 		phone: String,
 		password: String
@@ -300,8 +292,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Account = {
-            io.appwrite.models.Account.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Account = {
+            io.appwrite.models.Account.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PATCH",
@@ -321,7 +313,6 @@ class Account : Service {
      * @return [io.appwrite.models.Preferences]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getPrefs(): io.appwrite.models.Preferences {
         val path = "/account/prefs"
         val params = mutableMapOf<String, Any?>(
@@ -329,8 +320,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Preferences = {
-            io.appwrite.models.Preferences.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Preferences = {
+            io.appwrite.models.Preferences.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -343,7 +334,7 @@ class Account : Service {
     }
     
     /**
-     * Update Account Preferences
+     * Update Preferences
      *
      * Update currently logged in user account preferences. The object you pass is
      * stored as is, and replaces any previous value. The maximum allowed prefs
@@ -353,7 +344,6 @@ class Account : Service {
      * @return [io.appwrite.models.Account]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updatePrefs(
 		prefs: Any
 	): io.appwrite.models.Account {
@@ -364,8 +354,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Account = {
-            io.appwrite.models.Account.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Account = {
+            io.appwrite.models.Account.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PATCH",
@@ -394,7 +384,6 @@ class Account : Service {
      * @return [io.appwrite.models.Token]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createRecovery(
 		email: String,
 		url: String
@@ -407,8 +396,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
-            io.appwrite.models.Token.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Token = {
+            io.appwrite.models.Token.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -440,7 +429,6 @@ class Account : Service {
      * @return [io.appwrite.models.Token]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updateRecovery(
 		userId: String,
 		secret: String,
@@ -457,8 +445,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
-            io.appwrite.models.Token.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Token = {
+            io.appwrite.models.Token.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PUT",
@@ -471,7 +459,7 @@ class Account : Service {
     }
     
     /**
-     * List Account Sessions
+     * List Sessions
      *
      * Get currently logged in user list of active sessions across different
      * devices.
@@ -479,7 +467,6 @@ class Account : Service {
      * @return [io.appwrite.models.SessionList]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun listSessions(): io.appwrite.models.SessionList {
         val path = "/account/sessions"
         val params = mutableMapOf<String, Any?>(
@@ -487,8 +474,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.SessionList = {
-            io.appwrite.models.SessionList.from(map = it)
+        val converter: (Any) -> io.appwrite.models.SessionList = {
+            io.appwrite.models.SessionList.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -501,7 +488,7 @@ class Account : Service {
     }
     
     /**
-     * Delete All Account Sessions
+     * Delete Sessions
      *
      * Delete all sessions from the user account and remove any sessions cookies
      * from the end client.
@@ -509,7 +496,6 @@ class Account : Service {
      * @return [Any]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun deleteSessions(): Any {
         val path = "/account/sessions"
         val params = mutableMapOf<String, Any?>(
@@ -539,7 +525,6 @@ class Account : Service {
      * @return [io.appwrite.models.Session]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createAnonymousSession(): io.appwrite.models.Session {
         val path = "/account/sessions/anonymous"
         val params = mutableMapOf<String, Any?>(
@@ -547,8 +532,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
-            io.appwrite.models.Session.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Session = {
+            io.appwrite.models.Session.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -561,7 +546,7 @@ class Account : Service {
     }
     
     /**
-     * Create Account Session with Email
+     * Create Email Session
      *
      * Allow the user to login into their account by providing a valid email and
      * password combination. This route will create a new session for the user.
@@ -571,7 +556,6 @@ class Account : Service {
      * @return [io.appwrite.models.Session]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createEmailSession(
 		email: String,
 		password: String
@@ -584,8 +568,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
-            io.appwrite.models.Session.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Session = {
+            io.appwrite.models.Session.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -612,13 +596,12 @@ class Account : Service {
      * the URL parameter empty, so that the login completion will be handled by
      * your Appwrite instance by default.
      *
-     * @param userId Unique Id. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+     * @param userId Unique Id. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
      * @param email User email.
      * @param url URL to redirect the user back to your app from the magic URL login. Only URLs from hostnames in your project platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.
      * @return [io.appwrite.models.Token]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createMagicURLSession(
 		userId: String,
 		email: String,
@@ -633,8 +616,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
-            io.appwrite.models.Token.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Token = {
+            io.appwrite.models.Token.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -666,7 +649,6 @@ class Account : Service {
      * @return [io.appwrite.models.Session]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updateMagicURLSession(
 		userId: String,
 		secret: String
@@ -679,8 +661,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
-            io.appwrite.models.Session.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Session = {
+            io.appwrite.models.Session.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PUT",
@@ -693,7 +675,7 @@ class Account : Service {
     }
     
     /**
-     * Create Account Session with OAuth2
+     * Create OAuth2 Session
      *
      * Allow the user to login to their account using the OAuth2 provider of their
      * choice. Each OAuth2 provider should be enabled from the Appwrite console
@@ -715,7 +697,6 @@ class Account : Service {
      *      
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createOAuth2Session(
 		activity: ComponentActivity, 
 		provider: String,
@@ -784,12 +765,11 @@ class Account : Service {
      * endpoint to complete the login process. The secret sent to the user's phone
      * is valid for 15 minutes.
      *
-     * @param userId Unique Id. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+     * @param userId Unique Id. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
      * @param phone Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212.
      * @return [io.appwrite.models.Token]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createPhoneSession(
 		userId: String,
 		phone: String
@@ -802,8 +782,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
-            io.appwrite.models.Token.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Token = {
+            io.appwrite.models.Token.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -829,7 +809,6 @@ class Account : Service {
      * @return [io.appwrite.models.Session]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updatePhoneSession(
 		userId: String,
 		secret: String
@@ -842,8 +821,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
-            io.appwrite.models.Session.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Session = {
+            io.appwrite.models.Session.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PUT",
@@ -856,7 +835,7 @@ class Account : Service {
     }
     
     /**
-     * Get Session By ID
+     * Get Session
      *
      * Use this endpoint to get a logged in user's session using a Session ID.
      * Inputting 'current' will return the current session being used.
@@ -865,7 +844,6 @@ class Account : Service {
      * @return [io.appwrite.models.Session]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getSession(
 		sessionId: String
 	): io.appwrite.models.Session {
@@ -875,8 +853,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
-            io.appwrite.models.Session.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Session = {
+            io.appwrite.models.Session.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -889,7 +867,7 @@ class Account : Service {
     }
     
     /**
-     * Update Session (Refresh Tokens)
+     * Update OAuth Session (Refresh Tokens)
      *
      * Access tokens have limited lifespan and expire to mitigate security risks.
      * If session was created using an OAuth provider, this route can be used to
@@ -899,7 +877,6 @@ class Account : Service {
      * @return [io.appwrite.models.Session]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updateSession(
 		sessionId: String
 	): io.appwrite.models.Session {
@@ -909,8 +886,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Session = {
-            io.appwrite.models.Session.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Session = {
+            io.appwrite.models.Session.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PATCH",
@@ -923,7 +900,7 @@ class Account : Service {
     }
     
     /**
-     * Delete Account Session
+     * Delete Session
      *
      * Use this endpoint to log out the currently logged in user from all their
      * account sessions across all of their different devices. When using the
@@ -934,7 +911,6 @@ class Account : Service {
      * @return [Any]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun deleteSession(
 		sessionId: String
 	): Any {
@@ -954,7 +930,7 @@ class Account : Service {
     }
     
     /**
-     * Update Account Status
+     * Update Status
      *
      * Block the currently logged in user account. Behind the scene, the user
      * record is not deleted but permanently blocked from any access. To
@@ -963,7 +939,6 @@ class Account : Service {
      * @return [io.appwrite.models.Account]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updateStatus(): io.appwrite.models.Account {
         val path = "/account/status"
         val params = mutableMapOf<String, Any?>(
@@ -971,8 +946,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Account = {
-            io.appwrite.models.Account.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Account = {
+            io.appwrite.models.Account.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PATCH",
@@ -1007,7 +982,6 @@ class Account : Service {
      * @return [io.appwrite.models.Token]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createVerification(
 		url: String
 	): io.appwrite.models.Token {
@@ -1018,8 +992,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
-            io.appwrite.models.Token.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Token = {
+            io.appwrite.models.Token.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -1044,7 +1018,6 @@ class Account : Service {
      * @return [io.appwrite.models.Token]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updateVerification(
 		userId: String,
 		secret: String
@@ -1057,8 +1030,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
-            io.appwrite.models.Token.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Token = {
+            io.appwrite.models.Token.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PUT",
@@ -1083,7 +1056,6 @@ class Account : Service {
      * @return [io.appwrite.models.Token]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createPhoneVerification(): io.appwrite.models.Token {
         val path = "/account/verification/phone"
         val params = mutableMapOf<String, Any?>(
@@ -1091,8 +1063,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
-            io.appwrite.models.Token.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Token = {
+            io.appwrite.models.Token.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -1117,7 +1089,6 @@ class Account : Service {
      * @return [io.appwrite.models.Token]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updatePhoneVerification(
 		userId: String,
 		secret: String
@@ -1130,8 +1101,8 @@ class Account : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Token = {
-            io.appwrite.models.Token.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Token = {
+            io.appwrite.models.Token.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PUT",

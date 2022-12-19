@@ -16,9 +16,7 @@ class Databases : Service {
      * List Documents
      *
      * Get a list of all the user's documents in a given collection. You can use
-     * the query params to filter your results. On admin mode, this endpoint will
-     * return a list of all of documents belonging to the provided collectionId.
-     * [Learn more about different API modes](/docs/admin).
+     * the query params to filter your results.
      *
      * @param databaseId Database ID.
      * @param collectionId Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).
@@ -26,7 +24,6 @@ class Databases : Service {
      * @return [io.appwrite.models.DocumentList]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun listDocuments(
 		databaseId: String,
 		collectionId: String,
@@ -39,8 +36,8 @@ class Databases : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.DocumentList = {
-            io.appwrite.models.DocumentList.from(map = it)
+        val converter: (Any) -> io.appwrite.models.DocumentList = {
+            io.appwrite.models.DocumentList.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -62,13 +59,12 @@ class Databases : Service {
      *
      * @param databaseId Database ID.
      * @param collectionId Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.
-     * @param documentId Document ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+     * @param documentId Document ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
      * @param data Document data as JSON object.
      * @param permissions An array of permissions strings. By default the current user is granted with all permissions. [Learn more about permissions](/docs/permissions).
      * @return [io.appwrite.models.Document]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createDocument(
 		databaseId: String,
 		collectionId: String,
@@ -85,8 +81,8 @@ class Databases : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Document = {
-            io.appwrite.models.Document.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Document = {
+            io.appwrite.models.Document.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -110,7 +106,6 @@ class Databases : Service {
      * @return [io.appwrite.models.Document]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getDocument(
 		databaseId: String,
 		collectionId: String,
@@ -122,8 +117,8 @@ class Databases : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Document = {
-            io.appwrite.models.Document.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Document = {
+            io.appwrite.models.Document.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -149,7 +144,6 @@ class Databases : Service {
      * @return [io.appwrite.models.Document]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updateDocument(
 		databaseId: String,
 		collectionId: String,
@@ -165,8 +159,8 @@ class Databases : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Document = {
-            io.appwrite.models.Document.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Document = {
+            io.appwrite.models.Document.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PATCH",
@@ -189,7 +183,6 @@ class Databases : Service {
      * @return [Any]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun deleteDocument(
 		databaseId: String,
 		collectionId: String,

@@ -34,7 +34,6 @@ class Avatars : Service {
      * @return [ByteArray]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getBrowser(
 		code: String,
 		width: Long? = null,
@@ -76,7 +75,6 @@ class Avatars : Service {
      * @return [ByteArray]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getCreditCard(
 		code: String,
 		width: Long? = null,
@@ -109,7 +107,6 @@ class Avatars : Service {
      * @return [ByteArray]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getFavicon(
 		url: String
 	): ByteArray {
@@ -147,7 +144,6 @@ class Avatars : Service {
      * @return [ByteArray]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getFlag(
 		code: String,
 		width: Long? = null,
@@ -189,7 +185,6 @@ class Avatars : Service {
      * @return [ByteArray]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getImage(
 		url: String,
 		width: Long? = null,
@@ -237,7 +232,6 @@ class Avatars : Service {
      * @return [ByteArray]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getInitials(
 		name: String? = null,
 		width: Long? = null,
@@ -274,7 +268,6 @@ class Avatars : Service {
      * @return [ByteArray]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getQR(
 		text: String,
 		size: Long? = null,

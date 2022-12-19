@@ -17,16 +17,12 @@ class Teams : Service {
      *
      * Get a list of all the teams in which the current user is a member. You can
      * use the parameters to filter your results.
-     * 
-     * In admin mode, this endpoint returns a list of all the teams in the current
-     * project. [Learn more about different API modes](/docs/admin).
      *
      * @param queries Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total
      * @param search Search term to filter your list results. Max length: 256 chars.
      * @return [io.appwrite.models.TeamList]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun list(
 		queries: List<String>? = null,
 		search: String? = null
@@ -39,8 +35,8 @@ class Teams : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.TeamList = {
-            io.appwrite.models.TeamList.from(map = it)
+        val converter: (Any) -> io.appwrite.models.TeamList = {
+            io.appwrite.models.TeamList.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -59,13 +55,12 @@ class Teams : Service {
      * assigned as the owner of the team. Only the users with the owner role can
      * invite new members, add new owners and delete or update the team.
      *
-     * @param teamId Team ID. Choose your own unique ID or pass the string "unique()" to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
+     * @param teamId Team ID. Choose your own unique ID or pass the string `ID.unique()` to auto generate it. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
      * @param name Team name. Max length: 128 chars.
      * @param roles Array of strings. Use this param to set the roles in the team for the user who created it. The default role is **owner**. A role can be any string. Learn more about [roles and permissions](/docs/permissions). Maximum of 100 roles are allowed, each 32 characters long.
      * @return [io.appwrite.models.Team]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun create(
 		teamId: String,
 		name: String,
@@ -80,8 +75,8 @@ class Teams : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Team = {
-            io.appwrite.models.Team.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Team = {
+            io.appwrite.models.Team.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -102,7 +97,6 @@ class Teams : Service {
      * @return [io.appwrite.models.Team]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun get(
 		teamId: String
 	): io.appwrite.models.Team {
@@ -112,8 +106,8 @@ class Teams : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Team = {
-            io.appwrite.models.Team.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Team = {
+            io.appwrite.models.Team.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -136,7 +130,6 @@ class Teams : Service {
      * @return [io.appwrite.models.Team]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun update(
 		teamId: String,
 		name: String
@@ -148,8 +141,8 @@ class Teams : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Team = {
-            io.appwrite.models.Team.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Team = {
+            io.appwrite.models.Team.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PUT",
@@ -171,7 +164,6 @@ class Teams : Service {
      * @return [Any]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun delete(
 		teamId: String
 	): Any {
@@ -202,7 +194,6 @@ class Teams : Service {
      * @return [io.appwrite.models.MembershipList]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun listMemberships(
 		teamId: String,
 		queries: List<String>? = null,
@@ -216,8 +207,8 @@ class Teams : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.MembershipList = {
-            io.appwrite.models.MembershipList.from(map = it)
+        val converter: (Any) -> io.appwrite.models.MembershipList = {
+            io.appwrite.models.MembershipList.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
@@ -256,7 +247,6 @@ class Teams : Service {
      * @return [io.appwrite.models.Membership]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun createMembership(
 		teamId: String,
 		email: String,
@@ -274,8 +264,8 @@ class Teams : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Membership = {
-            io.appwrite.models.Membership.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Membership = {
+            io.appwrite.models.Membership.from(map = it as Map<String, Any>)
         }
         return client.call(
             "POST",
@@ -295,29 +285,28 @@ class Teams : Service {
      *
      * @param teamId Team ID.
      * @param membershipId Membership ID.
-     * @return [io.appwrite.models.MembershipList]     
+     * @return [io.appwrite.models.Membership]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun getMembership(
 		teamId: String,
 		membershipId: String
-	): io.appwrite.models.MembershipList {
+	): io.appwrite.models.Membership {
         val path = "/teams/{teamId}/memberships/{membershipId}".replace("{teamId}", teamId).replace("{membershipId}", membershipId)
         val params = mutableMapOf<String, Any?>(
         )
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.MembershipList = {
-            io.appwrite.models.MembershipList.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Membership = {
+            io.appwrite.models.Membership.from(map = it as Map<String, Any>)
         }
         return client.call(
             "GET",
             path,
             headers,
             params,
-            responseType = io.appwrite.models.MembershipList::class.java,
+            responseType = io.appwrite.models.Membership::class.java,
             converter,
         )
     }
@@ -335,7 +324,6 @@ class Teams : Service {
      * @return [io.appwrite.models.Membership]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updateMembershipRoles(
 		teamId: String,
 		membershipId: String,
@@ -348,8 +336,8 @@ class Teams : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Membership = {
-            io.appwrite.models.Membership.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Membership = {
+            io.appwrite.models.Membership.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PATCH",
@@ -373,7 +361,6 @@ class Teams : Service {
      * @return [Any]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun deleteMembership(
 		teamId: String,
 		membershipId: String
@@ -411,7 +398,6 @@ class Teams : Service {
      * @return [io.appwrite.models.Membership]     
      */
     @JvmOverloads
-    @Throws(AppwriteException::class)
     suspend fun updateMembershipStatus(
 		teamId: String,
 		membershipId: String,
@@ -426,8 +412,8 @@ class Teams : Service {
         val headers = mutableMapOf(
             "content-type" to "application/json"
         )
-        val converter: (Map<String, Any>) -> io.appwrite.models.Membership = {
-            io.appwrite.models.Membership.from(map = it)
+        val converter: (Any) -> io.appwrite.models.Membership = {
+            io.appwrite.models.Membership.from(map = it as Map<String, Any>)
         }
         return client.call(
             "PATCH",
