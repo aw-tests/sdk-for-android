@@ -10,7 +10,6 @@ Teams teams = new Teams(client);
 
 teams.createMembership(
     "[TEAM_ID]",
-    "email@example.com",
     listOf(),
     "https://example.com",
     new CoroutineCallback<>((result, error) -> {

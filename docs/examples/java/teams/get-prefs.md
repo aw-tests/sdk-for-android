@@ -1,15 +1,15 @@
 import io.appwrite.Client;
 import io.appwrite.coroutines.CoroutineCallback;
-import io.appwrite.services.Graphql;
+import io.appwrite.services.Teams;
 
 Client client = new Client(context)
     .setEndpoint("https://[HOSTNAME_OR_IP]/v1") // Your API Endpoint
     .setProject("5df5acd0d48c2"); // Your project ID
 
-Graphql graphql = new Graphql(client);
+Teams teams = new Teams(client);
 
-graphql.63a0228e7e93a(
-    "[QUERY]",
+teams.getPrefs(
+    "[TEAM_ID]"
     new CoroutineCallback<>((result, error) -> {
         if (error != null) {
             error.printStackTrace();

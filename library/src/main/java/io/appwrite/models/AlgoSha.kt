@@ -4,18 +4,18 @@ import com.google.gson.annotations.SerializedName
 import io.appwrite.extensions.jsonCast
 
 /**
- * JWT
+ * AlgoSHA
  */
-data class Jwt(
+data class AlgoSha(
     /**
-     * JWT encoded string.
+     * Algo type.
      */
-    @SerializedName("jwt")
-    val jwt: String,
+    @SerializedName("type")
+    val type: String,
 
 ) {
     fun toMap(): Map<String, Any> = mapOf(
-        "jwt" to jwt as Any,
+        "type" to type as Any,
     )
 
     companion object {
@@ -23,8 +23,8 @@ data class Jwt(
         @Suppress("UNCHECKED_CAST")
         fun from(
             map: Map<String, Any>,
-        ) = Jwt(
-            jwt = map["jwt"] as String,
+        ) = AlgoSha(
+            type = map["type"] as String,
         )
     }
 }

@@ -7,7 +7,6 @@ val client = Client(context)
 
 val teams = Teams(client)
 
-val response = teams.update(
-    teamId = "[TEAM_ID]",
-    name = "[NAME]"
+val response = teams.getPrefs(
+    teamId = "[TEAM_ID]"
 )

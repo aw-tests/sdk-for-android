@@ -8,9 +8,9 @@ Client client = new Client(context)
 
 Teams teams = new Teams(client);
 
-teams.update(
+teams.updatePrefs(
     "[TEAM_ID]",
-    "[NAME]"
+    mapOf( "a" to "b" )
     new CoroutineCallback<>((result, error) -> {
         if (error != null) {
             error.printStackTrace();
