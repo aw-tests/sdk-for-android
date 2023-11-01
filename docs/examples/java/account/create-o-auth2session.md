@@ -1,39 +1,7 @@
 import io.appwrite.Client;
 import io.appwrite.coroutines.CoroutineCallback;
 import io.appwrite.services.Account;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import io.appwrite.enums.Provider;
-
-
-
-
-
-
-
-
-
-
 
 Client client = new Client(context)
     .setEndpoint("https://cloud.appwrite.io/v1") // Your API Endpoint

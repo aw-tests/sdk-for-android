@@ -2,14 +2,14 @@ package io.appwrite.enums
 
 enum class ImageGravity(val value: String) {
     CENTER("center"),
-    TOP-LEFT("top-left"),
+    TOPLEFT("top-left"),
     TOP("top"),
-    TOP-RIGHT("top-right"),
+    TOPRIGHT("top-right"),
     LEFT("left"),
     RIGHT("right"),
-    BOTTOM-LEFT("bottom-left"),
+    BOTTOMLEFT("bottom-left"),
     BOTTOM("bottom"),
-    BOTTOM-RIGHT("bottom-right");
+    BOTTOMRIGHT("bottom-right");
 
     override fun toString() = value
 }

@@ -1,9 +1,7 @@
 import io.appwrite.Client
+import io.appwrite.coroutines.CoroutineCallback
 import io.appwrite.models.InputFile
 import io.appwrite.services.Storage
-
-import io.appwrite.enums.ImageGravity
-import io.appwrite.enums.ImageFormat
 
 val client = Client(context)
     .setEndpoint("https://cloud.appwrite.io/v1") // Your API Endpoint
